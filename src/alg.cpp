@@ -53,37 +53,34 @@ int countPairs2(int *arr, int len, int value) {
 	return count;
 }
 
-int cbinsearch(int* arr, int size, int value) {
-	int count = 0;
+int cbinsearch(int *arr, int size, int value) {
+  int count = 0;
 	int left = 0, righ = size - 1;
-	while (left < righ) {
-		int mid = (left + righ) / 2;
-		if (arr[mid] == value) {
-			count++;
-			if (arr[mid + 1] == value) {
-				mid += 1;
-				while (arr[mid] == value) {
+	while (left <= righ) {
+    int mid = (left+righ) / 2;
+    if (arr[mid] == value) {
+      int a = mid - 1;
+			while (arr[mid] == value) {
+				if (arr[mid] == value) {
 					count++;
 					mid++;
 				}
 			}
-			if (arr[mid - 1] == value) {
-				mid -= 1;
-				while (arr[mid] == value) {
+      while ( arr[a] == value) {
+        if (arr[a] == value) {
 					count++;
-					mid--;
+					--a;
 				}
 			}
-
-			else if (arr[mid] > value) {
-				righ = mid - 1;
-			}
-			else {
-				left = mid + 1;
-			}
-		}
-	}
-	return count;
+      return count;
+    }
+		else if (arr[mid] < value) {
+			left = mid + 1;
+		} else {
+      righ = mid - 1;
+    }
+  }
+  return count;
 }
 
 int countPairs3(int *arr, int len, int value) {
