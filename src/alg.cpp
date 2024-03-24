@@ -17,15 +17,15 @@ void bubbleSort(int list[], int listLength){
 
 int countPairs1(int *arr, int len, int value) {
   bubbleSort(arr, len);
-  int count = 0;
-  for (int i = 0; i < len - 1; i++) {
-    for (int j = 1; j < len; j++) {
-      if (arr[i] + arr[j] == value) {
-        count++;
-      }
-    }
-  }
-  return count;
+		int count = 0;
+		for (int i = 0; i < len; i++) {
+			for (int j = i+1; j < len; j++) {
+				if (arr[i] + arr[j] == value) {
+					count++;
+				}
+			}
+		}
+		return count;
 }
 
 int countPairs2(int *arr, int len, int value) {
@@ -78,10 +78,14 @@ int cbinsearch(int *arr, int size, int value) {
 
 int countPairs3(int *arr, int len, int value) {
   bubbleSort(arr, len);
-  int count = 0;
-  for (int i = 0; i < len; i++) {
-    int two = value - arr[i];
-    count += cbinsearch(arr + i + 1, len - i - 1 , two);
-  }
-  return count;
+ int count = 0;
+int i = 0;
+while (arr[i] <= (value / 2) - 1) {
+	int two = value - arr[i];
+	count += cbinsearch(arr, len, two);
+	i++;
+		}
+int midd = cbinsearch(arr, len, value / 2);
+count += midd * ((midd - 1)) / 2;
+		return count;
 }
