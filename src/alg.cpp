@@ -37,7 +37,7 @@ int countPairs2(int *arr, int len, int value) {
   }
   for (int i = 0; i < max; i++) {
     for (int j = i+1; j < max; j++) {
-      if (arr[i] + arr[j] == value) {
+      if ((arr[i] + arr[j]) == value) {
         count++;
       }
     }
@@ -48,7 +48,7 @@ int countPairs2(int *arr, int len, int value) {
 int cbinsearch(int *arr, int size, int value) {
   int count = 0;
   int left = 0, righ = size - 1;
-  while (left <= righ) {
+  while (left < righ) {
     int mid = (left+righ) / 2;
     if (arr[mid] == value) {
       int a = mid - 1;
